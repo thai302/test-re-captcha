@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
-<script src="https://www.google.com/recaptcha/api.js"></script>
+<title>Page Title</title>  
+   <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lfa4TQdAAAAAGD6NgJXUDQuw-XKMiO44O8psMQn"></script>
+   <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
 <script>
+   
+   grecaptcha.enterprise.ready(function() {
+       grecaptcha.enterprise.execute('6Lfa4TQdAAAAAGD6NgJXUDQuw-XKMiO44O8psMQn', {action: 'login'}).then(function(token) {
+          console.log(token);
+       });
+   });
+   
    function onSubmit(token) {
    console.log(token);
      document.getElementById("demo-form").submit();
