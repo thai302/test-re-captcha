@@ -7,13 +7,26 @@
 </head>
 <body>
 <script>
-   
    grecaptcha.enterprise.ready(function() {
        grecaptcha.enterprise.execute('6Lfa4TQdAAAAAGD6NgJXUDQuw-XKMiO44O8psMQn', {action: 'login'}).then(function(token) {
           console.log(token);
        });
    });
    
+   (function () {
+        window.captchaVerifyResponse = function (token) {
+          grecaptcha.enterprise.ready(function () {
+            grecaptcha.enterprise
+              .execute('6Lfa4TQdAAAAAGD6NgJXUDQuw-XKMiO44O8psMQn', {
+                action: 'login',
+              })
+              .then(function (tokenCaptcha) {
+                android.reCaptchaCallbackInAndroid(tokenCaptcha);
+              });
+          });
+        };
+      })();
+      
    function onSubmit(token) {
    console.log(token);
      document.getElementById("demo-form").submit();
